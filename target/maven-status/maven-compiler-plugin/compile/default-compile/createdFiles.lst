@@ -1,7 +1,15 @@
-fakestore\pages\OrderPage.class
+fakestore\pages\categoryPages\YogaAndPilatesPage.class
+fakestore\driver\DriverManager.class
+fakestore\driver\NewBrowser.class
+fakestore\driver\INewBrowserContext.class
 fakestore\pages\BasePage.class
 fakestore\pages\MyAccountPage.class
 fakestore\pages\MainPage.class
+fakestore\driver\NewBrowserContext.class
+fakestore\pages\WishlistPage.class
+fakestore\pages\OrderPage.class
+fakestore\pages\categoryPages\WindsurfingPage.class
 fakestore\pages\BasketPage.class
 fakestore\pages\ShopPage.class
-fakestore\pages\WishlistPage.class
+fakestore\pages\categoryPages\ClimbingPage.class
+fakestore\pages\categoryPages\SailingPage.class
