@@ -11,5 +11,9 @@ C:\MyProjects\playwright-training\src\main\java\fakestore\pages\categoryPages\Yo
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\MainPage.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\MyAccountPage.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\OrderPage.java
+C:\MyProjects\playwright-training\src\main\java\fakestore\pages\productPages\BaseProductPage.java
+C:\MyProjects\playwright-training\src\main\java\fakestore\pages\productPages\climbingProducts\ProductClimbingViaFerrata.java
+C:\MyProjects\playwright-training\src\main\java\fakestore\pages\productPages\windsurfingProducts\ProductGreeceLimnosPage.java
+C:\MyProjects\playwright-training\src\main\java\fakestore\pages\SearchResultsPage.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\ShopPage.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\WishlistPage.java
