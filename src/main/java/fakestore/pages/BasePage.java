@@ -1,97 +1,125 @@
 package fakestore.pages;
 
-import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.LoadState;
-import fakestore.driver.DriverManager;
-import fakestore.driver.INewBrowserContext;
+import fakestore.actions.Actions;
 
-import java.util.Objects;
+public class BasePage extends Actions {
 
-public class BasePage {
-
-    private final String SELECTOR_SHOP_TAB                      = "//div[@class = 'primary-navigation']//a[text() = 'Sklep']";
-    private final String SELECTOR_ORDER_TAB                     = "//div[@class = 'primary-navigation']//a[text() = 'Zamówienie']";
-    private final String SELECTOR_BASKET_TAB                    = "//div[@class = 'primary-navigation']//a[text() = 'Koszyk']";
-    private final String SELECTOR_MYACCOUNT_TAB                 = "//div[@class = 'primary-navigation']//a[text() = 'Moje konto']";
-    private final String SELECTOR_WISHLIST_TAB                  = "//div[@class = 'primary-navigation']//a[text() = 'Lista życzeń']";
-
-    private static DriverManager driverManager = null;
+    private final String SELECTOR_MAIN_PAGE_TAB                     = "//div[@class = 'primary-navigation']//a[text() = 'Strona główna']";
+    private final String SELECTOR_SHOP_TAB                          = "//div[@class = 'primary-navigation']//a[text() = 'Sklep']";
+    private final String SELECTOR_ORDER_TAB                         = "//div[@class = 'primary-navigation']//a[text() = 'Zamówienie']";
+    private final String SELECTOR_CART_TAB                          = "//div[@class = 'primary-navigation']//a[text() = 'Koszyk']";
+    private final String SELECTOR_MYACCOUNT_TAB                     = "//div[@class = 'primary-navigation']//a[text() = 'Moje konto']";
+    private final String SELECTOR_WISHLIST_TAB                      = "//div[@class = 'primary-navigation']//a[text() = 'Lista życzeń']";
+    private final String SELECTOR_CART_CONTENTS                     = "//a[@class = 'cart-contents']";
+    private final String SELECTOR_REMOVE_PRODUCT_FROM_CART_BUTTON   = "//ul[@class='woocommerce-mini-cart cart_list product_list_widget']//a[1]";
+    private final String SELECTOR_GO_TO_PRODUCT_BUTTON              = "//ul[@class='woocommerce-mini-cart cart_list product_list_widget']//a[2]";
+    private final String SELECTOR_VIEW_CART_BUTTON                  = "//p[@class='woocommerce-mini-cart__buttons buttons']//a[1]";
+    private final String SELECTOR_CHECKOUT_BUTTON                   = "//p[@class='woocommerce-mini-cart__buttons buttons']//a[2]";;
+    private final String SELECTOR_SEARCH_FIELD_INPUT                = "//input[@id='woocommerce-product-search-field-0']";
+    private final String SELECTOR_LOGO_BUTTON                       = "//a[@class='custom-logo-link']";
+    private final String SELECTOR_BREADCRUMB_NAVIGATION             = "//nav[@class = 'woocommerce-breadcrumb']";
+    private final String SELECTOR_PRODUCT_CATEGORY_WIDGET           = "//div[@id='woocommerce_product_categories-3']";
+    private final String SELECTOR_RECENTLY_VIEWED_PRODUCTS_WIDGET   = "//div[@id='woocommerce_recently_viewed_products-3']";
+    private final String SELECTOR_FIRST_ITEM                        = "//li[1]/a[1]";
+    private final String SELECTOR_SECOND_ITEM                       = "//li[2]/a[1]";
+    private final String SELECTOR_THIRD_ITEM                        = "//li[3]/a[1]";
+    private final String SELECTOR_FOURTH_ITEM                       = "//li[4]/a[1]";
 
 
     public BasePage() {
         super();
     }
 
-    public static INewBrowserContext getDriver() {
-        if (Objects.isNull(driverManager)) {
-            driverManager = new DriverManager();
-        }
-
-        return DriverManager.getDriver();
-    }
-
-    public void loadUrl(String url) {
-        getDriver().currentPage().navigate(url);
-        getDriver().currentPage().waitForLoadState(LoadState.LOAD);
-        System.out.println("Url" + " " + url + " " + "has been loaded");
-    }
-
-    public String getUrl() {
-        return getDriver().currentPage().url();
-    }
-
-    public Page getCurrentPage() {
-        return getDriver().currentPage();
-    }
-
-    public void closeBrowser() {
-        getDriver().currentPage().context().close();
-    }
-
-    public Locator getElement(String selector) {
-        getDriver().currentPage().waitForLoadState(LoadState.LOAD);
-        return getDriver().currentPage().locator(selector);
-    }
-
-    public String getTextFromElement(String selector) {
-        return getElement(selector).innerText();
+    public void goToMainPageTab() {
+        clickElement(SELECTOR_MAIN_PAGE_TAB);
     }
 
     public void goToShopTab() {
-        getElement(SELECTOR_SHOP_TAB).click();
+        clickElement(SELECTOR_SHOP_TAB);
     }
 
     public void goToOrderTab() {
-        getElement(SELECTOR_ORDER_TAB).click();
+        clickElement(SELECTOR_ORDER_TAB);
     }
 
-    public void goToBasketTab() {
-        getElement(SELECTOR_BASKET_TAB).click();
+    public void goToCartTab() {
+        clickElement(SELECTOR_CART_TAB);
     }
 
     public void goToMyAccountTab() {
-        getElement(SELECTOR_MYACCOUNT_TAB).click();
+        clickElement(SELECTOR_MYACCOUNT_TAB);
     }
 
     public void goToWishlistTab() {
-        getElement(SELECTOR_WISHLIST_TAB).click();
+        clickElement(SELECTOR_WISHLIST_TAB);
     }
 
-    public void scrollDown() {
-        getDriver().currentPage().mouse().down();
+    public void clickLogo(){
+        clickElement(SELECTOR_LOGO_BUTTON);
     }
 
-    public void waitForPage(String url) {
-        getDriver().currentPage().waitForURL(url);
-        getDriver().currentPage().waitForLoadState(LoadState.LOAD);
-        System.out.println("Url" + " " + url + " " + "has been loaded");
+    public void goToCart() {
+        clickElement(SELECTOR_CART_CONTENTS);
     }
 
-    public void verifyIfVisible(String selector){
-        getElement(selector).isVisible();
+    public void viewCartContents() {
+        hoverOverElement(SELECTOR_CART_CONTENTS);
     }
 
-    public void clickElement(String selector) {
-        getElement(selector).click();
+    public void cartContentsRemoveProduct(){
+        clickElement(SELECTOR_REMOVE_PRODUCT_FROM_CART_BUTTON);
+    }
+
+    public void cartContentsGoToProduct(){
+        clickElement(SELECTOR_GO_TO_PRODUCT_BUTTON);
+    }
+
+    public void cartContentsViewCart(){
+        clickElement(SELECTOR_VIEW_CART_BUTTON);
+    }
+
+    public void cartContentsGoToCheckout(){
+        clickElement(SELECTOR_CHECKOUT_BUTTON);
+    }
+
+    public void getCartContents(){
+        hoverOverElement(SELECTOR_CART_CONTENTS);
+    }
+
+    public void selectBreadcrumbNavigationItem(int itemIndex){
+
+        switch(itemIndex){
+            case (1):
+                clickElement(SELECTOR_BREADCRUMB_NAVIGATION + "/a[1]");
+                break;
+            case(2):
+                clickElement(SELECTOR_BREADCRUMB_NAVIGATION + "/a[2]");
+                break;
+        }
+    }
+
+    public void searchForText (String searchText) {
+        fillInputWithText(SELECTOR_SEARCH_FIELD_INPUT, searchText);
+        pressKeyOnKeyboard(SELECTOR_SEARCH_FIELD_INPUT, "Enter");
+    }
+
+    public void selectProductCategory(int categoryIndex){
+
+        switch (categoryIndex) {
+            case (1) -> clickElement(SELECTOR_PRODUCT_CATEGORY_WIDGET + SELECTOR_FIRST_ITEM);
+            case (2) -> clickElement(SELECTOR_PRODUCT_CATEGORY_WIDGET + SELECTOR_SECOND_ITEM);
+            case (3) -> clickElement(SELECTOR_PRODUCT_CATEGORY_WIDGET + SELECTOR_THIRD_ITEM);
+            case (4) -> clickElement(SELECTOR_PRODUCT_CATEGORY_WIDGET + SELECTOR_FOURTH_ITEM);
+        }
+    }
+
+    public void selectLastViewedProduct(int productIndex){
+
+        switch (productIndex) {
+            case (1) -> clickElement(SELECTOR_RECENTLY_VIEWED_PRODUCTS_WIDGET + SELECTOR_FIRST_ITEM);
+            case (2) -> clickElement(SELECTOR_RECENTLY_VIEWED_PRODUCTS_WIDGET + SELECTOR_SECOND_ITEM);
+            case (3) -> clickElement(SELECTOR_RECENTLY_VIEWED_PRODUCTS_WIDGET + SELECTOR_THIRD_ITEM);
+            case (4) -> clickElement(SELECTOR_RECENTLY_VIEWED_PRODUCTS_WIDGET + SELECTOR_FOURTH_ITEM);
+        }
     }
 }
