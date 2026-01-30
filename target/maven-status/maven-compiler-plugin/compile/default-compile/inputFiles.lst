@@ -1,9 +1,12 @@
+C:\MyProjects\playwright-training\src\main\java\fakestore\actions\Actions.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\driver\DriverManager.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\driver\INewBrowserContext.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\driver\NewBrowser.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\driver\NewBrowserContext.java
+C:\MyProjects\playwright-training\src\main\java\fakestore\models\Customer.java
+C:\MyProjects\playwright-training\src\main\java\fakestore\models\PaymentDetails.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\BasePage.java
-C:\MyProjects\playwright-training\src\main\java\fakestore\pages\BasketPage.java
+C:\MyProjects\playwright-training\src\main\java\fakestore\pages\CartPage.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\categoryPages\ClimbingPage.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\categoryPages\SailingPage.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\categoryPages\WindsurfingPage.java
