@@ -2,6 +2,7 @@ import fakestore.pages.BasePage;
 import fakestore.pages.MainPage;
 import fakestore.pages.ShopPage;
 import fakestore.pages.categoryPages.WindsurfingPage;
+import fakestore.pages.productPages.climbingProducts.ProductClimbingViaFerrata;
 import org.junit.jupiter.api.*;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -14,6 +15,7 @@ public class MainPageTest {
     private final ShopPage shopPage = new ShopPage();
     private final BasePage basePage = new BasePage();
     private final WindsurfingPage windsurfingPage = new WindsurfingPage();
+    private final ProductClimbingViaFerrata productClimbingViaFerrata = new ProductClimbingViaFerrata();
 
     @BeforeEach
     public void initializeDriver(){
@@ -24,7 +26,7 @@ public class MainPageTest {
     @Test
     public void loadBrowserAndOpenMainPageTest() {
         assertThat(mainPage.getMainPage()).hasURL("https://fakestore.testelka.pl/");
-        assertEquals("Wybierz podróż dla siebie!", mainPage.getHeader(), "Header is correct");
+        assertEquals("Wybierz podróż dla siebie!", mainPage.getHeader(), "Header is incorrect");
 
     }
 
@@ -32,23 +34,25 @@ public class MainPageTest {
     @Test
     public void navigateToShopPageTest() {
         mainPage.goToShopTab();
-        assertEquals("Sklep", shopPage.getHeader(), "Header is correct");
+        assertEquals("Sklep", shopPage.getHeader(), "Header is incorrect");
     }
 
     @Order(3)
     @Test
     public void selectCategoryTest(){
         assertThat(mainPage.getProductCategorySection()).isVisible();
-        mainPage.goToWindsurfingCategory();
-        assertEquals("Windsurfing", windsurfingPage.getHeader(), "Header is correct");
+        mainPage.selectCategory(1);
+        assertEquals("Windsurfing", windsurfingPage.getHeader(), "Header is incorrect");
         assertThat(windsurfingPage.getWindurfingPage()).hasURL("https://fakestore.testelka.pl/product-category/windsurfing/");
     }
     @Order(4)
     @Test
-    public void selectNewProductTest(){
-        assertThat(mainPage.getNewProductsSection()).isVisible();
-        mainPage.selectNewProduct(2);
-
+    public void selectProductFromSectionTest(){
+        assertThat(mainPage.getProductSection("Bestsellery")).isVisible();
+        String productName = mainPage.getProductNameFromSection("Bestsellery", 2);
+        mainPage.selectProductFromSection("Bestsellery", 2);
+        assertEquals(productName, productClimbingViaFerrata.getProductName(), "Incorrect product has been opened" );
+        assertThat(productClimbingViaFerrata.getCurrentPage()).hasURL(productClimbingViaFerrata.getURL());
     }
 
     @AfterAll
