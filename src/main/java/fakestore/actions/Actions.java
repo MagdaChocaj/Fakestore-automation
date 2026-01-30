@@ -47,6 +47,10 @@ public class Actions {
         return getElement(selector).innerText();
     }
 
+    public String getValueFromElement(String selector) {
+        return getElement(selector).inputValue();
+    }
+
     public void waitForPage(String url) {
         getDriver().currentPage().waitForURL(url);
         getDriver().currentPage().waitForLoadState(LoadState.LOAD);
@@ -79,5 +83,9 @@ public class Actions {
 
     public void pressKeyOnKeyboard(String selector, String key) {
         getElement(selector).press(key);
+    }
+
+    public void focusOnElement(String selector) {
+        getElement(selector).focus();
     }
 }
