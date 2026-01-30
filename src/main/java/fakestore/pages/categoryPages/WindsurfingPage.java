@@ -49,4 +49,27 @@ public class WindsurfingPage extends MainPage {
                 break;
         }
     }
+
+    public String getProductName(int productIndex) {
+
+        String productName = "";
+        switch(productIndex) {
+            case (1):
+                productName = getTextFromElement(SELECTOR_FIRST_PRODUCT + "/h2");
+                break;
+            case (2):
+                productName = getTextFromElement(SELECTOR_SECOND_PRODUCT + "/h2");
+                break;
+            case (3):
+                productName = getTextFromElement(SELECTOR_THIRD_PRODUCT + "/h2");
+                break;
+            case (4):
+                productName = getTextFromElement(SELECTOR_FOURTH_PRODUCT + "/h2");
+                break;
+            case (5):
+                productName = getTextFromElement(SELECTOR_FIFTH_PRODUCT + "/h2");
+                break;
+        }
+        return productName;
+    }
 }
