@@ -1,24 +1,28 @@
 package fakestore.pages.productPages;
 
+import com.microsoft.playwright.Locator;
 import fakestore.pages.BasePage;
 
 public class BaseProductPage extends BasePage {
 
-    private final String SELECTOR_PRODUCT_TITLE                     = "//h1[@class='product_title entry-title']";
-    private final String SELECTOR_PRICE                             = "//p[@class='price']//bdi";
-    private final String SELECTOR_STOCK_AVAILABILITY                = "//p[@class='stock in-stock']";
-    private final String SELECTOR_QUANTITY_INPUT                    = "//div[@class='quantity']/input";
-    private final String SELECTOR_ADD_TO_CART_BUTTON                = "//button[@name='add-to-cart']";
-    private final String SELECTOR_EXPRESS_CHECKOUT_BUTTON           = "//iframe[@name='__privateStripeFrame5293']";
-    private final String SELECTOR_WISHLIST_BUTTON                   = "//a[@class='add_to_wishlist single_add_to_wishlist']";
-    private final String SELECTOR_DESCRIPTION_TAB                   = "//li[@id='tab-title-description']/a";
-    private final String SELECTOR_ADDITIONAL_INFORMATION_TAB        = "//li[@id='tab-title-additional_information']/a";
-    private final String SELECTOR_REVIEWS_TAB                       = "//li[@id='tab-title-reviews']/a";
-    private final String SELECTOR_RELATED_PRODUCTS_SECTION          = "//section[@class='related products']";
-    private final String SELECTOR_STICKY_ADD_TO_CART_BUTTON         = "//a[@class='storefront-sticky-add-to-cart__content-button button alt']";
-    private final String SELECTOR_PREVIOUS_PRODUCT                  = "//nav[@class='storefront-product-pagination']/a[@rel='prev']";
-    private final String SELECTOR_NEXT_PRODUCT                      = "//nav[@class='storefront-product-pagination']/a[@rel='next']";
-
+    private final String SELECTOR_PRODUCT_TITLE                         = "//h1[@class='product_title entry-title']";
+    private final String SELECTOR_PRICE                                 = "//p[@class='price']//bdi";
+    private final String SELECTOR_STOCK_AVAILABILITY                    = "//p[@class='stock in-stock']";
+    private final String SELECTOR_QUANTITY_INPUT                        = "//div[@class='quantity']/input";
+    private final String SELECTOR_QUANTITY_BUTTON                       = "//div[@class='quantity']";
+    private final String SELECTOR_ADD_TO_CART_BUTTON                    = "//button[@name='add-to-cart']";
+    private final String SELECTOR_EXPRESS_CHECKOUT_BUTTON               = "//iframe[@name='__privateStripeFrame5293']";
+    private final String SELECTOR_WISHLIST_BUTTON                       = "//a[@class='add_to_wishlist single_add_to_wishlist']";
+    private final String SELECTOR_DESCRIPTION_TAB                       = "//li[@id='tab-title-description']/a";
+    private final String SELECTOR_ADDITIONAL_INFORMATION_TAB            = "//li[@id='tab-title-additional_information']/a";
+    private final String SELECTOR_REVIEWS_TAB                           = "//li[@id='tab-title-reviews']/a";
+    private final String SELECTOR_RELATED_PRODUCTS_SECTION              = "//section[@class='related products']";
+    private final String SELECTOR_STICKY_ADD_TO_CART_BUTTON             = "//a[@class='storefront-sticky-add-to-cart__content-button button alt']";
+    private final String SELECTOR_PREVIOUS_PRODUCT                      = "//nav[@class='storefront-product-pagination']/a[@rel='prev']";
+    private final String SELECTOR_NEXT_PRODUCT                          = "//nav[@class='storefront-product-pagination']/a[@rel='next']";
+    private final String SELECTOR_SUCCESS_MESSAGE                       = "//div[@class='woocommerce-message']";
+    private final String SELECTOR_SUCCESS_MESSAGE_VIEW_CART_BUTTON      = "//div[@class='woocommerce-message']/a";
+    String quantity;
 
     public String getProductTitle(){
         return getTextFromElement(SELECTOR_PRODUCT_TITLE);
@@ -34,11 +38,17 @@ public class BaseProductPage extends BasePage {
 
     public void addQuantity(String quantity) {
         inputTextToElement(SELECTOR_QUANTITY_INPUT, quantity);
+        this.quantity = getValueFromElement(SELECTOR_QUANTITY_INPUT);
     }
 
     public void increaseQuantity() {
-        getElement(SELECTOR_QUANTITY_INPUT).focus();
-        getElement(SELECTOR_QUANTITY_INPUT).click();
+        focusOnElement(SELECTOR_QUANTITY_BUTTON);
+        clickElement(SELECTOR_QUANTITY_BUTTON);
+        this.quantity = getValueFromElement(SELECTOR_QUANTITY_INPUT);
+    }
+
+    public String getQuantity() {
+        return quantity;
     }
 
     public void addProductToCart() {
@@ -55,14 +65,17 @@ public class BaseProductPage extends BasePage {
 
     public void viewProductDescription() {
         clickElement(SELECTOR_DESCRIPTION_TAB);
+        focusOnElement(SELECTOR_DESCRIPTION_TAB);
     }
 
     public void viewAdditionalInformation() {
         clickElement(SELECTOR_ADDITIONAL_INFORMATION_TAB);
+        focusOnElement(SELECTOR_ADDITIONAL_INFORMATION_TAB);
     }
 
     public void viewReviews() {
         clickElement(SELECTOR_REVIEWS_TAB);
+        focusOnElement(SELECTOR_REVIEWS_TAB);
     }
 
     public void viewRelatedProducts() {
@@ -80,6 +93,20 @@ public class BaseProductPage extends BasePage {
     public void goToNextProduct() {
         clickElement(SELECTOR_NEXT_PRODUCT);
     }
+
+    public String getSuccessMessageContent() {
+        return getTextFromElement(SELECTOR_SUCCESS_MESSAGE);
+    }
+
+    public Locator getSuccessMessage() {
+        return getElement(SELECTOR_SUCCESS_MESSAGE);
+    }
+
+    public void clickViewCartButtonInSuccessMessage() {
+        clickElement(SELECTOR_SUCCESS_MESSAGE_VIEW_CART_BUTTON);
+    }
+
+
 
 
 }
