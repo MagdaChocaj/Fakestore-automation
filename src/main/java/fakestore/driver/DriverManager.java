@@ -14,7 +14,7 @@ public class DriverManager {
     public static BrowserType.LaunchOptions getLaunchOptions() {
         BrowserType.LaunchOptions options = new BrowserType.LaunchOptions();
         options.setHeadless(false);
-        options.setSlowMo(50);
+        options.setSlowMo(100);
         return options;
     }
 
