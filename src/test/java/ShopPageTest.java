@@ -29,9 +29,6 @@ public class ShopPageTest {
         assertEquals("Windsurfing", windsurfingPage.getHeader(), "Category is correct");
     }
 
-    @Order(2)
-    @Test
-
     @AfterAll
     public  void closeBrowser(){
         basePage.closeBrowser();
