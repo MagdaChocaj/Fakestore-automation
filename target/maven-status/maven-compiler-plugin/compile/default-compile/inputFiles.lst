@@ -3,6 +3,7 @@ C:\MyProjects\playwright-training\src\main\java\fakestore\driver\DriverManager.j
 C:\MyProjects\playwright-training\src\main\java\fakestore\driver\INewBrowserContext.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\driver\NewBrowser.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\driver\NewBrowserContext.java
+C:\MyProjects\playwright-training\src\main\java\fakestore\enums\CardNumbers.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\models\Customer.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\models\PaymentDetails.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\BasePage.java
@@ -20,3 +21,4 @@ C:\MyProjects\playwright-training\src\main\java\fakestore\pages\productPages\win
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\SearchResultsPage.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\ShopPage.java
 C:\MyProjects\playwright-training\src\main\java\fakestore\pages\WishlistPage.java
+C:\MyProjects\playwright-training\src\main\java\Main.java

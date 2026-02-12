@@ -2,13 +2,11 @@ import fakestore.pages.BasePage;
 import fakestore.pages.MainPage;
 import fakestore.pages.ShopPage;
 import fakestore.pages.categoryPages.WindsurfingPage;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ShopPageTest {
 
     private final MainPage mainPage = new MainPage();
@@ -24,9 +22,9 @@ public class ShopPageTest {
     @Order(1)
     @Test
     public void selectCategoryTest(){
-        mainPage.goToShopTab();
+        mainPage.goToTab("Sklep");
         shopPage.selectCategory(1);
-        assertEquals("Windsurfing", windsurfingPage.getHeader(), "Category is correct");
+        assertEquals("Windsurfing", windsurfingPage.getHeader(), "Category is incorrect");
     }
 
     @AfterAll

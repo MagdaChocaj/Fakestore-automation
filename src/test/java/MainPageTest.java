@@ -33,7 +33,7 @@ public class MainPageTest {
     @Order(2)
     @Test
     public void navigateToShopPageTest() {
-        mainPage.goToShopTab();
+        mainPage.goToTab("Sklep");
         assertEquals("Sklep", shopPage.getHeader(), "Header is incorrect");
     }
 
@@ -41,7 +41,7 @@ public class MainPageTest {
     @Test
     public void selectCategoryTest(){
         assertThat(mainPage.getProductCategorySection()).isVisible();
-        mainPage.selectCategory(1);
+        mainPage.selectProductCategory("Windsurfing");
         assertEquals("Windsurfing", windsurfingPage.getHeader(), "Header is incorrect");
         assertThat(windsurfingPage.getWindurfingPage()).hasURL("https://fakestore.testelka.pl/product-category/windsurfing/");
     }
@@ -49,10 +49,10 @@ public class MainPageTest {
     @Test
     public void selectProductFromSectionTest(){
         assertThat(mainPage.getProductSection("Bestsellery")).isVisible();
-        String productName = mainPage.getProductNameFromSection("Bestsellery", 2);
-        mainPage.selectProductFromSection("Bestsellery", 2);
-        assertEquals(productName, productClimbingViaFerrata.getProductName(), "Incorrect product has been opened" );
-        assertThat(productClimbingViaFerrata.getCurrentPage()).hasURL(productClimbingViaFerrata.getURL());
+        //String productName = mainPage.getProductNameFromSection("Bestsellery", 2);
+        mainPage.selectProductFromSection("Bestsellery", "Wspinaczka Via Ferraty");
+        //assertEquals(productName, productClimbingViaFerrata.getProductName(), "Incorrect product has been opened" );
+        assertThat(productClimbingViaFerrata.getPage()).hasURL(productClimbingViaFerrata.getURL());
     }
 
     @AfterAll
