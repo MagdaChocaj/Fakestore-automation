@@ -2,6 +2,7 @@ package fakestore.pages;
 
 import fakestore.models.Customer;
 import fakestore.models.PaymentDetails;
+import fakestore.pages.Base.BasePage;
 
 public class OrderPage extends BasePage {
 

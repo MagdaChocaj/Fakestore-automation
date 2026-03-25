@@ -1,10 +1,6 @@
-import fakestore.models.Customer;
-import fakestore.pages.CartPage;
-import fakestore.pages.MainPage;
-import fakestore.pages.OrderPage;
-import fakestore.pages.ShopPage;
-import fakestore.pages.categoryPages.WindsurfingPage;
-import fakestore.pages.productPages.windsurfingProducts.ProductGreeceLimnosPage;
+import fakestore.pages.*;
+import fakestore.pages.Base.BaseProductPage;
+import fakestore.pages.Base.CategoryPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -17,8 +13,8 @@ public class PlaceOrderTest {
 
     private final MainPage mainPage = new MainPage();
     private final ShopPage shopPage = new ShopPage();
-    private final WindsurfingPage windsurfingPage = new WindsurfingPage();
-    private final ProductGreeceLimnosPage productGreeceLimnosPage = new ProductGreeceLimnosPage();
+    private final CategoryPage categoryPage = new CategoryPage();
+    private final BaseProductPage baseProductPage = new BaseProductPage();
     private final CartPage cartPage = new CartPage();
     private final OrderPage orderPage = new OrderPage();
 
@@ -30,19 +26,19 @@ public class PlaceOrderTest {
     @Test
     public void placeOrderTest(){
         mainPage.goToTab("Sklep");
-        shopPage.selectCategory(1);
-        assertEquals("Windsurfing", windsurfingPage.getHeader(), "Category is incorrect");
-        String productName = windsurfingPage.getProductName(3);
-        windsurfingPage.selectProduct(3);
-        assertEquals(productName, productGreeceLimnosPage.getProductName(), "Name of the product is incorrect");
-        productGreeceLimnosPage.viewAdditionalInformation();
-        productGreeceLimnosPage.viewReviews();
-        productGreeceLimnosPage.viewProductDescription();
-        productGreeceLimnosPage.addQuantity("2");
-        assertNotEquals("1", productGreeceLimnosPage.getQuantity());
-        productGreeceLimnosPage.addProductToCart();
-        assertThat(productGreeceLimnosPage.getSuccessMessage()).isVisible();
-        productGreeceLimnosPage.clickViewCartButtonInSuccessMessage();
+        shopPage.selectCategory("Windsurfing");
+        assertEquals("Windsurfing", categoryPage.getHeader(), "Category is incorrect");
+        String productName = categoryPage.getProductName(3);
+        categoryPage.selectProduct(3);
+        assertEquals(productName, baseProductPage.getProductTitle(), "Name of the product is incorrect");
+        baseProductPage.viewAdditionalInformation();
+        baseProductPage.viewReviews();
+        baseProductPage.viewProductDescription();
+        baseProductPage.addQuantity("2");
+        assertNotEquals("1", baseProductPage.getQuantity());
+        baseProductPage.addProductToCart();
+        assertThat(baseProductPage.getSuccessMessage()).isVisible();
+        baseProductPage.clickViewCartButtonInSuccessMessage();
         cartPage.clickProceedToCheckoutButton();
         orderPage.fillConsumerDetailsAndCreateAnAccount();
         orderPage.addAdditionalDetails("Jeśli mnie nie będzie, proszę zostawić paczkę u sąsiada obok.");
