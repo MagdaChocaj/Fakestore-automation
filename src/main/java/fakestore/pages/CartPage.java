@@ -1,5 +1,7 @@
 package fakestore.pages;
 
+import fakestore.pages.Base.BasePage;
+
 public class CartPage extends BasePage {
 
     private final String SELECTOR_PROCEED_TO_CHECKOUT_BUTTON    = "//div[@class='wc-proceed-to-checkout']";
