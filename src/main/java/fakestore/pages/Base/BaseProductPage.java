@@ -1,7 +1,7 @@
-package fakestore.pages.productPages;
+package fakestore.pages.Base;
 
 import com.microsoft.playwright.Locator;
-import fakestore.pages.BasePage;
+import com.microsoft.playwright.Page;
 
 public class BaseProductPage extends BasePage {
 
@@ -9,7 +9,6 @@ public class BaseProductPage extends BasePage {
     private final String SELECTOR_PRICE                                 = "//p[@class='price']//bdi";
     private final String SELECTOR_STOCK_AVAILABILITY                    = "//p[@class='stock in-stock']";
     private final String SELECTOR_QUANTITY_INPUT                        = "//div[@class='quantity']/input";
-    private final String SELECTOR_QUANTITY_BUTTON                       = "//div[@class='quantity']";
     private final String SELECTOR_ADD_TO_CART_BUTTON                    = "//button[@name='add-to-cart']";
     private final String SELECTOR_EXPRESS_CHECKOUT_BUTTON               = "//iframe[@name='__privateStripeFrame5293']";
     private final String SELECTOR_WISHLIST_BUTTON                       = "//a[@class='add_to_wishlist single_add_to_wishlist']";
@@ -36,14 +35,16 @@ public class BaseProductPage extends BasePage {
         return getTextFromElement(SELECTOR_STOCK_AVAILABILITY);
     }
 
-    public void addQuantity(String quantity) {
-        inputTextToElement(SELECTOR_QUANTITY_INPUT, quantity);
-        this.quantity = getValueFromElement(SELECTOR_QUANTITY_INPUT);
+    public Page getProductPage(){
+        return getCurrentPage();
     }
 
-    public void increaseQuantity() {
-        focusOnElement(SELECTOR_QUANTITY_BUTTON);
-        clickElement(SELECTOR_QUANTITY_BUTTON);
+    public String getURL() {
+        return getUrl();
+    }
+
+    public void addQuantity(String quantity) {
+        inputTextToElement(SELECTOR_QUANTITY_INPUT, quantity);
         this.quantity = getValueFromElement(SELECTOR_QUANTITY_INPUT);
     }
 
