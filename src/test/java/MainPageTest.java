@@ -1,8 +1,8 @@
-import fakestore.pages.BasePage;
+import fakestore.pages.Base.BasePage;
+import fakestore.pages.Base.CategoryPage;
 import fakestore.pages.MainPage;
 import fakestore.pages.ShopPage;
-import fakestore.pages.categoryPages.WindsurfingPage;
-import fakestore.pages.productPages.climbingProducts.ProductClimbingViaFerrata;
+import fakestore.pages.Base.BaseProductPage;
 import org.junit.jupiter.api.*;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
@@ -14,8 +14,8 @@ public class MainPageTest {
     private final MainPage mainPage = new MainPage();
     private final ShopPage shopPage = new ShopPage();
     private final BasePage basePage = new BasePage();
-    private final WindsurfingPage windsurfingPage = new WindsurfingPage();
-    private final ProductClimbingViaFerrata productClimbingViaFerrata = new ProductClimbingViaFerrata();
+    private final CategoryPage categoryPage = new CategoryPage();
+    private final BaseProductPage baseProductPage = new BaseProductPage();
 
     @BeforeEach
     public void initializeDriver(){
@@ -39,20 +39,21 @@ public class MainPageTest {
 
     @Order(3)
     @Test
-    public void selectCategoryTest(){
+    public void selectCategoryTest() {
         assertThat(mainPage.getProductCategorySection()).isVisible();
         mainPage.selectProductCategory("Windsurfing");
-        assertEquals("Windsurfing", windsurfingPage.getHeader(), "Header is incorrect");
-        assertThat(windsurfingPage.getWindurfingPage()).hasURL("https://fakestore.testelka.pl/product-category/windsurfing/");
+        assertEquals("Windsurfing", categoryPage.getHeader(), "Header is incorrect");
+        assertThat(categoryPage.getCategoryPage()).hasURL("");
     }
+
     @Order(4)
     @Test
     public void selectProductFromSectionTest(){
         assertThat(mainPage.getProductSection("Bestsellery")).isVisible();
-        //String productName = mainPage.getProductNameFromSection("Bestsellery", 2);
+        String productName = mainPage.getProductNameFromSection("Bestsellery", "Wspinaczka Via Ferraty" );
         mainPage.selectProductFromSection("Bestsellery", "Wspinaczka Via Ferraty");
-        //assertEquals(productName, productClimbingViaFerrata.getProductName(), "Incorrect product has been opened" );
-        assertThat(productClimbingViaFerrata.getPage()).hasURL(productClimbingViaFerrata.getURL());
+        assertEquals(productName, baseProductPage.getProductTitle(), "Incorrect product has been opened" );
+        assertThat(baseProductPage.getProductPage()).hasURL(baseProductPage.getURL());
     }
 
     @AfterAll
