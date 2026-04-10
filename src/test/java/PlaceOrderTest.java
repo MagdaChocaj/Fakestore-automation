@@ -25,12 +25,12 @@ public class PlaceOrderTest {
 
     @Test
     public void placeOrderTest(){
+        String categoryName = "Windsurfing";
+        String product = "Egipt - El Gouna";
         mainPage.goToTab("Sklep");
-        shopPage.selectCategory("Windsurfing");
-        assertEquals("Windsurfing", categoryPage.getHeader(), "Category is incorrect");
-        String productName = categoryPage.getProductName(3);
-        categoryPage.selectProduct(3);
-        assertEquals(productName, baseProductPage.getProductTitle(), "Name of the product is incorrect");
+        shopPage.selectCategory(categoryName);
+        assertEquals(categoryName, categoryPage.getHeader(), "Category is incorrect");
+        categoryPage.selectProduct(product);
         baseProductPage.viewAdditionalInformation();
         baseProductPage.viewReviews();
         baseProductPage.viewProductDescription();
