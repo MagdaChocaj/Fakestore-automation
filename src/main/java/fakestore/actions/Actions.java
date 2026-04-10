@@ -1,7 +1,10 @@
 package fakestore.actions;
 
+import com.microsoft.playwright.Frame;
+import com.microsoft.playwright.FrameLocator;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.AriaRole;
 import com.microsoft.playwright.options.LoadState;
 import fakestore.driver.DriverManager;
 import fakestore.driver.INewBrowserContext;
@@ -11,6 +14,7 @@ import java.util.Objects;
 public class Actions {
 
     private static DriverManager driverManager = null;
+    public FrameLocator frameLocator;
 
     public static INewBrowserContext getDriver() {
         if (Objects.isNull(driverManager)) {
@@ -23,7 +27,6 @@ public class Actions {
     public void loadUrl(String url) {
         getDriver().currentPage().navigate(url);
         getDriver().currentPage().waitForLoadState(LoadState.LOAD);
-        System.out.println("Url" + " " + url + " " + "has been loaded");
     }
 
     public String getUrl() {
@@ -54,7 +57,6 @@ public class Actions {
     public void waitForPage(String url) {
         getDriver().currentPage().waitForURL(url);
         getDriver().currentPage().waitForLoadState(LoadState.LOAD);
-        System.out.println("Url" + " " + url + " " + "has been loaded");
     }
 
     public void verifyIfVisible(String selector){
@@ -87,5 +89,18 @@ public class Actions {
 
     public void focusOnElement(String selector) {
         getElement(selector).focus();
+    }
+
+    public void selectValueFromDropdown(String selector, String optionName) {
+        getElement(selector).selectOption(optionName);
+    }
+
+    public void gotToFrame(String selector) {
+        this.frameLocator = getDriver().currentPage().frameLocator(selector);
+
+    }
+
+    public FrameLocator getFrameLocator() {
+        return this.frameLocator;
     }
 }
