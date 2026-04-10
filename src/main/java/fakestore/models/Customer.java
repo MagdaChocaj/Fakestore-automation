@@ -3,26 +3,26 @@ package fakestore.models;
 import com.github.javafaker.Faker;
 
 import java.util.Locale;
-import java.util.Random;
 
 public class Customer {
 
     String email;
     String firstName;
     String lastName;
+    String country;
     String address;
     String postalCode;
     String city;
     String phoneNumber;
     String password;
 
-    Faker faker = new Faker();
-    private static final Random random = new Random();
+    Faker faker = new Faker(Locale.of("pl", "PL"));
 
     public Customer() {
         this.firstName = faker.name().firstName();
         this.lastName = faker.name().lastName();
-        this.email = emailFromName(firstName, lastName, "gmail.com");
+        this.country = faker.country().name();
+        this.email = faker.internet().emailAddress();
         this.address = faker.address().streetAddress();
         this.postalCode = faker.address().zipCode();
         this.city = faker.address().city();
@@ -35,6 +35,10 @@ public class Customer {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getCountry() {
+        return country;
     }
 
     public String getPhoneNumber(){
@@ -57,19 +61,8 @@ public class Customer {
         return email;
     }
 
-    public static String emailFromName(String firstName, String lastName, String domain) {
-        String[] patterns = {
-                firstName.toLowerCase() + "." + lastName.toLowerCase(),
-                firstName.substring(0, 1).toLowerCase() + lastName.toLowerCase(),
-                firstName.toLowerCase() + lastName.substring(0, 1).toLowerCase(),
-                firstName.toLowerCase() + "_" + lastName.toLowerCase()
-        };
-        String username = patterns[random.nextInt(patterns.length)];
-        return username + "@" + domain;
-    }
-
     public String generatePassword() {
-        String newPassword = faker.numerify("7");
+        String newPassword = faker.internet().password(12, 20, true, true);
         return this.password = newPassword;
 
     }
