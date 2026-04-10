@@ -6,16 +6,16 @@ public class BasePage extends Actions {
 
     private final String SELECTOR_TAB                               = "//div[@class = 'primary-navigation']//a[text() = '%s']";
     private final String SELECTOR_CART_CONTENTS                     = "//a[@class = 'cart-contents']";
-    private final String SELECTOR_REMOVE_PRODUCT_FROM_CART_BUTTON   = "//ul[@class='woocommerce-mini-cart cart_list product_list_widget']//a[1]";
-    private final String SELECTOR_GO_TO_PRODUCT_BUTTON              = "//ul[@class='woocommerce-mini-cart cart_list product_list_widget']//a[2]";
-    private final String SELECTOR_VIEW_CART_BUTTON                  = "//p[@class='woocommerce-mini-cart__buttons buttons']//a[1]";
-    private final String SELECTOR_CHECKOUT_BUTTON                   = "//p[@class='woocommerce-mini-cart__buttons buttons']//a[2]";
+    private final String SELECTOR_REMOVE_PRODUCT_FROM_CART_BUTTON   = "//li [@class='woocommerce-mini-cart-item mini_cart_item']/a [@role = 'button']";
+    private final String SELECTOR_GO_TO_PRODUCT_BUTTON              = "//li [@class='woocommerce-mini-cart-item mini_cart_item']/a [@href='https://fakestore.testelka.pl/product/windsurfing-w-lanzarote-costa-teguise/']";
+    private final String SELECTOR_VIEW_CART_BUTTON                  = "//p[@class='woocommerce-mini-cart__buttons buttons']/a[@href='https://fakestore.testelka.pl/koszyk/']";
+    private final String SELECTOR_CHECKOUT_BUTTON                   = "//p[@class='woocommerce-mini-cart__buttons buttons']/a[@href='https://fakestore.testelka.pl/zamowienie/']";
     private final String SELECTOR_SEARCH_FIELD_INPUT                = "//input[@id='woocommerce-product-search-field-0']";
     private final String SELECTOR_LOGO_BUTTON                       = "//a[@class='custom-logo-link']";
     private final String SELECTOR_BREADCRUMB_NAVIGATION_ITEM        = "//nav[@class = 'woocommerce-breadcrumb']/a[text() = '%s']";
     private final String SELECTOR_CATEGORY_NAME                     = "//main[@id = 'main']//section[@class='storefront-product-section storefront-product-categories']//a[contains(@aria-label, '%s')]";
-    private final String SELECTOR_PRODUCT_CATEGORY_WIDGET           = "//div[@id='woocommerce_product_categories-3']";
-    private final String SELECTOR_RECENTLY_VIEWED_PRODUCTS_WIDGET   = "//div[@id='woocommerce_recently_viewed_products-3']";
+    private final String SELECTOR_PRODUCT_CATEGORY_WIDGET           = "//div[@id='woocommerce_product_categories-3']//a[text() = '%s']";
+    private final String SELECTOR_RECENTLY_VIEWED_PRODUCTS_WIDGET   = "//div[@id='woocommerce_recently_viewed_products-3']//span[text() = '%s']/parent::a";
 
     public BasePage() {
         super();
@@ -69,5 +69,13 @@ public class BasePage extends Actions {
 
     public void selectProductCategory(String categoryName) {
         clickElement(String.format(SELECTOR_CATEGORY_NAME, categoryName));
+    }
+
+    public void selectProductCategoryFromWidget(String categoryName) {
+        clickElement(String.format(SELECTOR_PRODUCT_CATEGORY_WIDGET, categoryName));
+    }
+
+    public void selectRecentlyViewedProduct(String productName) {
+        clickElement(String.format(SELECTOR_RECENTLY_VIEWED_PRODUCTS_WIDGET, productName));
     }
 }
