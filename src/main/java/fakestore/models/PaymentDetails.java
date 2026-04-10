@@ -2,10 +2,6 @@ package fakestore.models;
 
 import com.github.javafaker.Faker;
 
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
-
 public class PaymentDetails {
 
     String cardNumber;
@@ -16,8 +12,8 @@ public class PaymentDetails {
     Faker faker = new Faker();
 
     public PaymentDetails() {
-        this.cardNumber = "";
-        this.cardExpirationDate = "";
+        this.cardNumber = "4242424242424242";
+        this.cardExpirationDate = "12/32";
         this.cardCVCCode = faker.number().digits(3);
         this.blikCode = faker.number().digits(6);
     }
