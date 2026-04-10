@@ -8,9 +8,9 @@ public class BaseProductPage extends BasePage {
     private final String SELECTOR_PRODUCT_TITLE                         = "//h1[@class='product_title entry-title']";
     private final String SELECTOR_PRICE                                 = "//p[@class='price']//bdi";
     private final String SELECTOR_STOCK_AVAILABILITY                    = "//p[@class='stock in-stock']";
-    private final String SELECTOR_QUANTITY_INPUT                        = "//div[@class='quantity']/input";
+    private final String SELECTOR_QUANTITY_INPUT                        = "//div[@class = 'quantity']/input";
     private final String SELECTOR_ADD_TO_CART_BUTTON                    = "//button[@name='add-to-cart']";
-    private final String SELECTOR_EXPRESS_CHECKOUT_BUTTON               = "//iframe[@name='__privateStripeFrame5293']";
+    private final String SELECTOR_EXPRESS_CHECKOUT_BUTTON               = "//button [contains(@class, 'LinkButton')]";
     private final String SELECTOR_WISHLIST_BUTTON                       = "//a[@class='add_to_wishlist single_add_to_wishlist']";
     private final String SELECTOR_DESCRIPTION_TAB                       = "//li[@id='tab-title-description']/a";
     private final String SELECTOR_ADDITIONAL_INFORMATION_TAB            = "//li[@id='tab-title-additional_information']/a";
