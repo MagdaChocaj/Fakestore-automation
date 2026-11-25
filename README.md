@@ -1,4 +1,4 @@
-# Playwright Training
+# Fakestore Automation
 
 
 
